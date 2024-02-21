@@ -29,6 +29,7 @@ public:
     void withdrawBalance(int _balance);
     void showDateLastTransaction();
     void sendMoney(accountPaycheck &destiny, int _balance);
+    void displayAccountInfo();
     accountPaycheck(const char *_name, int _age, const char *_numAccount, int _balance, const char *dateLastTransaction);
     ~accountPaycheck();
 };
@@ -99,12 +100,22 @@ void accountPaycheck::showDateLastTransaction()
     }
 }
 
+void accountPaycheck::displayAccountInfo()
+{
+    cout << "Nombre: " << nombre << endl;
+    cout << "Edad: " << edad << endl;
+    cout << "Numero de cuenta: " << numAccount << endl;
+    cout << "Saldo: " << balance << endl;
+    cout << "Fecha de ultima transaccion: " << dateLastTransaction << endl;
+}
+
 void  accountPaycheck::sendMoney(accountPaycheck &destiny, int _balance)
 {
     if (balance >= _balance)
     {
         balance -= _balance;
         destiny.balance += _balance;
+        updateDateLastTransaction();
     }
     else
     {
