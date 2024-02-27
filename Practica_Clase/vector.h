@@ -1,5 +1,6 @@
 #pragma once
 #include <sstream> // streams basados en cadena
+#include <cmath>
 using std::string;
 
 
@@ -18,6 +19,8 @@ public:
     Vector Multiplicar(double s);
     Vector operator*(Vector v2);
     Vector operator*(double s);
+    double GetMagnitud();
+    Vector GetUnitVector();
 };
 
 
@@ -90,4 +93,19 @@ Vector Vector::operator*(double s)
 Vector operator*(double s, Vector v)
 {
     return v * s;
+}
+
+double Vector::GetMagnitud()
+{
+    return sqrt(x*x+y*y+z*z);
+}
+
+Vector Vector::GetUnitVector()
+{
+    double m = GetMagnitud();
+    Vector r;
+    r.x = x/m;
+    r.y = y/m;
+    r.z = z/m;
+    return r;
 }
