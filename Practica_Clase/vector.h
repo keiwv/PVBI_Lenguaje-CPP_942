@@ -2,6 +2,7 @@
 #include <sstream> // streams basados en cadena
 using std::string;
 
+
 class Vector
 {
 public:
@@ -18,6 +19,7 @@ public:
     Vector operator*(Vector v2);
     Vector operator*(double s);
 };
+
 
 Vector::Vector(double x, double y, double z)
 {
@@ -83,4 +85,9 @@ Vector Vector::operator*(double s)
     r.y = this->y * s;
     r.z = this->z * s;
     return r;
+}
+
+Vector operator*(double s, Vector v)
+{
+    return v * s;
 }
