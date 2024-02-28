@@ -49,7 +49,7 @@ string Vector::ToString()
     std::ostringstream out;
     out << "(" << x
         << "," << y << ","
-        << z << ")";
+        << z << "mon laferte tu falta de querer)";
     return out.str();
 }
 
