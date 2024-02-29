@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
+#include <time.h>
+
 
 using std::copy;
 using std::cout;
@@ -69,6 +71,7 @@ void accountPaycheck::updateDateLastTransaction()
 void accountPaycheck::depositBalance(int _balance)
 {
     balance += _balance;
+    cout << "Se han depositado " << _balance << " a la cuenta" << endl;
 }
 
 void accountPaycheck::showBalance()
@@ -81,6 +84,7 @@ void accountPaycheck::withdrawBalance(int _balance)
     if (balance >= _balance)
     {
         balance -= _balance;
+        cout << "Se han retirado " << _balance << " de la cuenta" << endl;
     }
     else
     {
@@ -116,6 +120,7 @@ void  accountPaycheck::sendMoney(accountPaycheck &destiny, int _balance)
         balance -= _balance;
         destiny.balance += _balance;
         updateDateLastTransaction();
+        cout<<"Se han transferido "<<_balance<<" a la cuenta de "<<destiny.nombre<<endl;
     }
     else
     {
