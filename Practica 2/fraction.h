@@ -16,6 +16,7 @@ public:
     Fraction operator+(Fraction frac);
     Fraction operator-(Fraction frac);
     Fraction operator/(Fraction frac);
+    Fraction operator*(Fraction frac);
     void display();
 };
 string remove_space(const string &str);
@@ -25,7 +26,6 @@ Fraction::Fraction(const char *fraction_)
     string result;
     result = remove_space(fraction_);
     sscanf(result.c_str(), "%d/%d", &this->num, &this->den);
-    printf("%d/%d", this->num, this->den);
 }
 
 Fraction Fraction::operator+(Fraction frac)
@@ -63,14 +63,31 @@ Fraction Fraction::operator-(Fraction frac)
 
 Fraction Fraction::operator/(Fraction frac)
 {
-    
+    Fraction result("0/0");
+    if (this->den == 0 || frac.den == 0)
+    {
+        cout << "Division entre 0" << endl;
+        return 0;
+    }
+    else
+    {
+        if (this->num == 0 || frac.num == 0)
+        {
+            cout << "No se puede dividir un 0" << endl;
+        } else 
+        {
+            result.num = this->num * frac.den;
+            result.den = this->den * frac.num;
+        }
+    }
+    return result;
 }
 
 void Fraction::display()
 {
     cout << this->num;
     cout << "\\";
-    cout << this->den;
+    cout << this->den << endl;
 }
 
 string remove_space(const string &str)
