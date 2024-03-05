@@ -17,6 +17,8 @@ public:
     Fraction operator-(Fraction frac);
     Fraction operator/(Fraction frac);
     Fraction operator*(Fraction frac);
+    Fraction operator+(int num);
+
     void display();
 };
 string remove_space(const string &str);
@@ -60,7 +62,6 @@ Fraction Fraction::operator-(Fraction frac)
     return result;
 }
 
-
 Fraction Fraction::operator/(Fraction frac)
 {
     Fraction result("0/0");
@@ -74,10 +75,41 @@ Fraction Fraction::operator/(Fraction frac)
         if (this->num == 0 || frac.num == 0)
         {
             cout << "No se puede dividir un 0" << endl;
-        } else 
+        }
+        else
         {
             result.num = this->num * frac.den;
             result.den = this->den * frac.num;
+        }
+    }
+    return result;
+}
+
+Fraction Fraction::operator*(Fraction frac)
+{
+    Fraction result("0/0");
+    if (this->den == 0 || frac.den == 0)
+    {
+        cout << "No se puede multiplicar por 0" << endl;
+    }
+    else
+    {
+        if (this->num == 0 || frac.num == 0)
+        {
+            cout << "No se puede multiplicar por 0";
+        }
+        else
+        {
+            if (this->den == frac.den)
+            {
+                result.den = this->den;
+                result.num = this->num * frac.num;
+            }
+            else
+            {
+                result.num = this->num * frac.num;
+                result.den = this->den * frac.den;
+            }
         }
     }
     return result;
