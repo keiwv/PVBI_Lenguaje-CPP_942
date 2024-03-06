@@ -23,6 +23,11 @@ template <class T>
 void Stack<T>::push(T dato)
 {
     struct nodo *nuevo = new struct nodo;
+    if (nuevo == nullptr)
+    {
+        throw "Memoria insuficiente";
+    }
+    
     nuevo->dato = dato;
     nuevo->prev = tope; // Set the prev pointer of the new node correctly
     tope = nuevo;       // Update the top of the stack to point to the new node
@@ -39,7 +44,7 @@ T Stack<T>::pop()
         delete aux;
         return val;
     }
-    return (T)0;
+    throw "Underflow error";
 }
 template <class T>
 Stack<T>::~Stack()
@@ -62,7 +67,7 @@ T Stack<T>::Peek()
 {
     if (tope == NULL)
     {
-        return 0;
+        throw "Underflow error";
     }
     return tope->dato;
 }

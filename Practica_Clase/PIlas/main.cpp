@@ -21,6 +21,17 @@ int main()
     {
         cout << " " << pila.pop();
     }
+
+    try
+    {
+        pila.pop();
+    }
+    catch(const char *e)
+    {
+        cout << endl;
+        cout<< e << endl;
+    }
+    
     cout << endl;
     cout << "Elementos de segunda pila: ";
     Stack<double> pila2;
@@ -32,5 +43,5 @@ int main()
     {
         cout << " " << pila2.pop();
     }
-
+    
 }
