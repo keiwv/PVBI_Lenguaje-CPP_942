@@ -1,45 +1,53 @@
 #pragma once
 
+template <class T>
 
 class Stack
 {
     struct nodo
     {
-        int dato = 0;
+        T dato;
         struct nodo *prev = nullptr;
     };
     struct nodo *tope = nullptr;
 
 public:
     ~Stack();
-    void push(int dato);
-    int pop();
-    bool IsEmpty(){ return (tope == nullptr);};
+    void push(T dato);
+    T pop();
+    bool IsEmpty() { return (tope == nullptr); };
+    void Clear();
+    T Peek();
 };
-
-void Stack::push(int dato)
+template <class T>
+void Stack<T>::push(T dato)
 {
     struct nodo *nuevo = new struct nodo;
     nuevo->dato = dato;
-    tope->prev = tope;
-    tope = nuevo;
+    nuevo->prev = tope; // Set the prev pointer of the new node correctly
+    tope = nuevo;       // Update the top of the stack to point to the new node
 }
-
-int Stack::pop()
+template <class T>
+T Stack<T>::pop()
 {
     if (tope != nullptr)
     {
 
         struct nodo *aux = tope;
         tope = tope->prev;
-        int val = aux->dato;
+        T val = aux->dato;
         delete aux;
         return val;
     }
-    return 0;
+    return (T)0;
 }
-
-Stack::~Stack()
+template <class T>
+Stack<T>::~Stack()
+{
+    Clear();
+}
+template <class T>
+void Stack<T>::Clear()
 {
     struct nodo *aux;
     while (tope != nullptr)
@@ -48,4 +56,13 @@ Stack::~Stack()
         tope = tope->prev;
         delete aux;
     }
+}
+template <class T>
+T Stack<T>::Peek()
+{
+    if (tope == NULL)
+    {
+        return 0;
+    }
+    return tope->dato;
 }
