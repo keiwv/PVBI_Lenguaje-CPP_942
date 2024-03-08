@@ -29,8 +29,8 @@ void Stack<T>::push(T dato)
     }
     
     nuevo->dato = dato;
-    nuevo->prev = tope; // Set the prev pointer of the new node correctly
-    tope = nuevo;       // Update the top of the stack to point to the new node
+    nuevo->prev = tope; 
+    tope = nuevo;      
 }
 template <class T>
 T Stack<T>::pop()
