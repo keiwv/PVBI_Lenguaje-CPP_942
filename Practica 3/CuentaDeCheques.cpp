@@ -1,22 +1,37 @@
 #include "CuentaDeCheques.h"
+#include "CuentaHabiente.h"
+#include <chrono>
+#include <ctime>
+#include <iomanip>
 
-/*
-        int numero;
-    float saldo;
-    string fecha_um;
-    CuentaHabiente *propietario;
-*/
 
-cuentaCheques::cuentaCheques(int numero, float saldo, CuentaHabiente *propietario)
+string obtenerFechaActual() {
+    time_t now;
+    time(&now);
+    tm timeinfo;
+    char fechaActual[80];
+    if (localtime_s(&timeinfo, &now) == 0) {
+        strftime(fechaActual, sizeof(fechaActual), "%d/%m/%Y", &timeinfo);
+        return string(fechaActual);
+    }
+    else {
+        return "Error al obtener la fecha actual";
+    }
+}
+
+cuentaCheques::cuentaCheques(int numero, float saldo, CuentaHabiente* propietario)
 {
     this->numero = numero;
     this->saldo = saldo;
     this->propietario = propietario;
+    this->fecha_um = obtenerFechaActual();
 }
 
-void cuentaCheques::Depositar(int amount)
+void cuentaCheques::Depositar(float amount)
 {
     this->saldo += amount;
+    this->fecha_um = obtenerFechaActual();
+    
 }
 
 void cuentaCheques::Retirar(int amount)
@@ -28,6 +43,7 @@ void cuentaCheques::Retirar(int amount)
     else
     {
         this->saldo -= amount;
+        this->fecha_um = obtenerFechaActual();
     }
 }
 
@@ -47,6 +63,8 @@ void cuentaCheques::Imprimir()
 {
     cout << "Numero de cuenta: " << this->numero << endl;
     cout << "Saldo de la cuenta: " << this->saldo << endl;
-    cout << "Ãšltima fecha de modificaciÃ³n: " << fecha_um << endl;
+    cout << "Última fecha de modificación: " << fecha_um << endl;
     cout << "Propietario: " << propietario->GetName() << endl;
 }
+
+

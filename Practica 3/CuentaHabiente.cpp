@@ -1,9 +1,5 @@
 #include "CuentaHabiente.h"
-/*
-    CuentaHabiente(int numero, string name, string CURP);
-    CuentaHabiente ObtenerCuenta();
-    void ImprimirReporte();
-*/
+#include "CuentaDeCheques.h"
 
 CuentaHabiente::CuentaHabiente(int numero, string name, string CURP)
 {
@@ -24,10 +20,30 @@ CuentaHabiente CuentaHabiente::ObtenerCuenta()
 
 void CuentaHabiente::ImprimirReporte()
 {
-    cout << "TO BE ADDED " << endl;
+    for (auto& cuenta : this->accounts)
+    {
+        cout << "----------------------------------------------" << endl;
+        cout << "Número de Cuenta de Cheques: " << cuenta.GetNumber() << endl;
+        cout << "Saldo: " <<  cuenta.GetSaldo() << endl;
+        cout << "Fecha de ultima modificacion: " << cuenta.GetFechaUM() << endl;
+        cout << "Propietario: " << this->name << endl;
+    }
+    cout << "----------------------------------------------" << endl;
 }
 
- void CuentaHabiente::aniadirCuentaCheques(cuentaCheques cuenta)
- {
+void CuentaHabiente::aniadirCuentaCheques(cuentaCheques cuenta)
+{
     this->accounts.push_back(cuenta);
- }
+}
+
+cuentaCheques* CuentaHabiente::EncontrarCuentaCheques(int numero)
+{
+    for (auto& cuenta : this->accounts)
+    {
+        if (cuenta.GetNumber() == numero)
+        {
+            return &cuenta;
+        }
+    }
+    return nullptr;
+}

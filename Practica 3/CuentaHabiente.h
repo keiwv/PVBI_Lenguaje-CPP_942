@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "CuentaDeCheques.h"
+
+class cuentaCheques;
+class CuentaHabiente;
 
 using namespace std;
 
@@ -18,7 +20,9 @@ public:
     CuentaHabiente ObtenerCuenta();
     void ImprimirReporte();
     void aniadirCuentaCheques(cuentaCheques cuenta);
+    cuentaCheques* EncontrarCuentaCheques(int numero);
 public:
     string GetName() const { return name; };
-    string GetCURP() const {return CURP;};
+    string GetCURP() const { return CURP; };
+    int GetNumber() const { return numero; };
 };
